@@ -1,0 +1,76 @@
+<aside class="menu-sidebar d-none d-lg-block">
+  <div class="logo">
+      <a href="#">
+          <img src="/assets/img/logo-black.png " alt="Cool Admin" />
+      </a>
+  </div>
+  <div class="menu-sidebar__content js-scrollbar1">
+      <nav class="navbar-sidebar">
+          <ul class="list-unstyled navbar__list">
+              <li>
+                  <a [routerLink]="['/dashboard']">
+                      <i class="fas fa-chart-bar"></i>Dashboard</a>
+              </li>
+              <li>
+                  <a [routerLink]="['/dashboard/users']">
+                      <i class="fas fa-user"></i>Users</a>
+              </li>
+              <!-- <li class="has-sub">
+                <a class="js-arrow" href="#">
+                    <i class="fas fa-trophy"></i>Features
+                    <span class="arrow">
+                        <i class="fas fa-angle-down"></i>
+                    </span>
+                </a>
+                <ul class="list-unstyled navbar__sub-list js-sub-list">
+                    <li>
+                        <a href="table.html">Tables</a>
+                    </li>
+                    <li>
+                        <a href="form.html">Forms</a>
+                    </li>
+                    <li>
+                        <a href="#">Calendar</a>
+                    </li>
+                    <li>
+                        <a href="map.html">Maps</a>
+                    </li>
+                </ul>
+            </li> -->
+               <li class="has-sub">
+                  <a class="js-arrow" href="#">
+                      <i class="fas fa-book"></i>Books
+                      <span class="arrow">
+                          <i class="fas fa-angle-down"></i>
+                      </span>
+                  </a>
+                  <ul class="list-unstyled navbar__sub-list js-sub-list"> 
+                      <li>
+                          <a [routerLink]="['/dashboard/books/biography']"><i class="fas fa-list-alt"></i>Biographies</a>
+                      </li>
+                      <li>
+                          <a [routerLink]="['/dashboard/books/novel']"><i class="fas fa-list-alt"></i>Novels</a>
+                      </li>
+                      <li>
+                          <a [routerLink]="['/dashboard/books/selfhelp']"><i class="fas fa-list-alt"></i>Self-Help</a>
+                      </li>
+                      <li>
+                          <a [routerLink]="['/dashboard/books/science']" ><i class="fas fa-list-alt"></i>Science</a>
+                      </li>
+                      <li>
+                          <a [routerLink]="['/dashboard/books/business']"><i class="fas fa-list-alt"></i>Business</a>
+                      </li>
+                      <li>
+                          <a [routerLink]="['/dashboard/books/technology']"><i class="fas fa-list-alt"></i>Technology</a>
+                      </li>
+                 </ul>
+              </li> 
+              <li>
+                  <a [routerLink]="['/dashboard/category']">
+                      <i class="fas fa-plus"></i>Add Books</a>
+              </li>
+            
+          </ul>
+      </nav>
+  </div>
+</aside>

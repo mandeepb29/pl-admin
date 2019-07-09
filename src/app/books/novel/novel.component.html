@@ -1,0 +1,259 @@
+<div class="main-content">
+    <div class="section__content section__content--p30">
+        <div class="container">
+<div class="row">
+    <div class="col-md-12">
+        <!-- DATA TABLE -->
+        <h3 class="title-5 m-b-35 overview-wrap">Books / Novel</h3>
+        <div class="table-data__tool" >
+                <div class="table-data__tool-left">
+                        <input type="text" id="text-input" name="text-input" placeholder="Type book name here..." class="form-control"  [(ngModel)]="search" (keyup)="onKey($event)">
+                        <!-- <button class="btn btn-info" (click)="searchbook()">
+                             <i class="zmdi zmdi-search"></i> Search book</button> -->
+                        
+                     </div>
+            <!-- <div class="table-data__tool-left">
+                <div class="rs-select2--light rs-select2--md">
+                    <select class="js-select2" name="property">
+                        <option selected="selected">All Properties</option>
+                        <option value="">Option 1</option>
+                        <option value="">Option 2</option>
+                    </select>
+                    <div class="dropDownSelect2"></div>
+                </div>
+                <div class="rs-select2--light rs-select2--sm">
+                    <select class="js-select2" name="time">
+                        <option selected="selected">Today</option>
+                        <option value="">3 Days</option>
+                        <option value="">1 Week</option>
+                    </select>
+                    <div class="dropDownSelect2"></div>
+                </div>
+                <button class="au-btn-filter">
+                    <i class="zmdi zmdi-filter-list"></i>filters</button>
+            </div> -->
+            <div class="table-data__tool-right">
+                    <a [routerLink]="['/dashboard/add/novel']"> <button class="au-btn au-btn-icon au-btn--green au-btn--small">
+                    <i class="zmdi zmdi-plus"></i>add book</button></a>
+               
+            </div>
+        </div>
+        <div class="table-responsive table-responsive-data2">
+            <table class="table table-data2">
+                <thead>
+                    <tr>
+                        <th>sr no.</th>
+                        <th>name</th>
+                        <th>author</th>
+                        <th>tags</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                 
+                    <tr class="tr-shadow" *ngFor="let book of books">
+                        
+                        <td *ngIf="increment()">{{count-1}}</td>
+                        <td>{{book.bookName}}</td>
+                        <td class="desc">
+                            {{book.bookAuthor}}
+                        </td>
+                        <td>
+                            <span class="status--process">{{book.tag}}</span>
+                        </td>
+                        <td>
+                            <div class="table-data-feature">
+                                <button (click)="viewbook(book._id)" class="item" data-toggle="tooltip" data-placement="top" title="View" data-toggle="modal" data-target="#myModal">
+                                    <i class="zmdi zmdi-zoom-in"></i>
+                                </button>
+                                <button (click)="getid(book._id)" class="item" data-toggle="tooltip" data-placement="top" title="Delete"  data-toggle="modal" data-target="#deleteModal">
+                                    <i class="zmdi zmdi-delete"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="spacer"></tr>
+                   
+                </tbody>
+            </table>
+        </div>
+        <!-- END DATA TABLE -->
+    </div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+  
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">Book Details</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+         
+        </div>
+        <div class="modal-body">
+            <div >
+               
+                <div class="card-body card-block">
+                    <form (submit)="addNewBook()" method="post" enctype="multipart/form-data" class="form-horizontal"  [formGroup]="form">
+                        <div class="row form-group">
+                        </div>
+                        <div class="row form-group">
+                            <div class="col col-md-3" >
+                                <label for="text-input" class=" form-control-label">Enter Book Name</label>
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <input type="text" id="text-input" name="text-input" placeholder="Text" class="form-control" formControlName="name">
+                            </div>
+                             
+                        </div>
+                        <div class="row form-group" *ngIf=" form.get('name').invalid &&submited" >
+                            <p style="color: red; margin-left: 27%">
+                                Enter Book Name </p>
+                        </div>
+                        <div class="row form-group"> 
+                            <div class="col col-md-3">
+                                <label for="text-input" class=" form-control-label">Author</label>
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <input type="text" id="text-input" name="text-input" placeholder="Text" class="form-control" formControlName="author">
+                            </div>
+                        </div>
+                        <div class="row form-group" *ngIf=" form.get('author').invalid &&submited" >
+                            <p style="color: red; margin-left: 27%">
+                                {{form.author}} </p>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col col-md-3">
+                                <label for="textarea-input" class=" form-control-label">Description</label>
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <textarea name="textarea-input" id="textarea-input" rows="9" placeholder="Description..." class="form-control" formControlName="content"></textarea>
+                            </div>
+                        </div>
+    
+                        <div class="row form-group" *ngIf=" form.get('content').invalid &&submited" >
+                            <p style="color: red; margin-left: 27%">
+                                Enter Book Content </p>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col col-md-3">
+                                <label for="text-input" class=" form-control-label">PDF</label>
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <input type="text" id="text-input" name="text-input" placeholder="Text" class="form-control" formControlName="PDF">
+                            </div>
+                        </div>
+                        
+                        <!-- <div class="row form-group" *ngIf="imagePreview!='' && imagePreview">
+                                
+                                    <img style="width: 120px; margin:0px 27%"  [src]="imagePreview" [alt]=form.value.name>
+                                
+                        </div>
+    
+                        <div class="row form-group">
+                            <div class="col col-md-3">
+                                <label for="file-input" class=" form-control-label">Image</label>
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <input type="file" id="file-input" name="file-input" class="form-control-file" (change)="onImageSelect($event)">
+                            </div>
+                        </div>
+    
+                        <div class="row form-group" *ngIf=" form.get('image').invalid &&submited" >
+                            <p style="color: red; margin-left: 27%">
+                                Select Image </p>
+                        </div> -->
+                        <div class="row form-group">
+                            <div class="col col-md-3">
+                                <label for="price-input" class=" form-control-label">Price</label>
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <input type="number" id="price-input" name="numbert" placeholder="Price" class="form-control" formControlName="price">
+                            </div>
+                        </div>
+    
+                        <div class="row form-group" *ngIf=" form.get('price').invalid &&submited" >
+                            <p style="color: red; margin-left: 27%">
+                                Enter Book Price </p>
+                        </div>
+    
+                        <div class="row form-group">
+                            <div class="col col-md-3">
+                                <label for="price-input" class=" form-control-label">Rating</label>
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <input type="number" id="price-input" name="numbert" placeholder="Rating" class="form-control" formControlName="rating">
+                            </div>
+                        </div>
+    
+                        <div class="row form-group" *ngIf=" form.get('rating').invalid &&submited" >
+                            <p style="color: red; margin-left: 27%">
+                                Enter Book Rating </p>
+                        </div>
+                      
+                        <div class="row form-group">
+                            <div class="col col-md-3">
+                                <label class=" form-control-label">Tags</label>
+                            </div>
+                            <div class="col col-md-9">
+                                <div class="form-check">
+                                    <div class="checkbox" *ngFor="let tag of tags">
+                                        <label for="checkbox1" class="form-check-label ">
+                                            <input type="checkbox" value={{tag.value}} (change)="tagSelect(tag,$event)" class="form-check-input" [checked]="checked(tag.value)">{{tag.value}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button (click)="updatebook()" type="submit" class="btn btn-info btn-sm">
+                <i class="fa fa-dot-circle-o"></i> Update
+            </button>
+           
+          <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+
+    <!--Confirm Delete Modal -->
+<div id="deleteModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+  
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">Delete Book</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+         
+        </div>
+        <div class="modal-body">
+            <div >
+               
+                <div class="card-body card-block">
+                Delete Book from Database
+                </div>
+                
+            </div>
+        </div>
+        <div class="modal-footer">
+
+        <button (click)="deletebook()" type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Yes</button>
+          <button type="button" class="btn btn-secondary btn-sm"  data-dismiss="modal"> NO </button>
+        </div>
+      </div>
+  
+    </div>
+  </div>

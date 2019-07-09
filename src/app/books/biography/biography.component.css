@@ -1,0 +1,13 @@
+tr:nth-child(even) {
+   background: #adadad61;
+}
+
+tr:nth-child(even) .table-data-feature .item{
+    background: white;
+}
+
+img{
+    width: 150px;
+    height: 230px;
+    margin:10px 27%;
+}

@@ -1,0 +1,38 @@
+.content button{
+    background: white;
+    font-weight: 500;
+}
+
+.header-mobile__bar img{
+    width: 60%;
+    float: left;
+}
+
+.content-mobile{
+    padding: 18px;
+}
+.content-mobile button {
+    float: right;
+    
+}
+.content-mobile button span{
+    font-family: "Poppins", sans-serif !important;
+}
+.content-mobile button i{
+    color: #fff;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+@media (max-width: 991px){
+  .header-button{
+      display: none;
+  }
+  .content{
+     display: none !important; 
+  }
+  .content-mobile{
+      display: block;
+      width: 100%
+  }
+}

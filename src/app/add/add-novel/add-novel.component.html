@@ -1,0 +1,138 @@
+<div class="main-content">
+    <div class="section__content section__content--p30">
+        <div class="container">
+            <div class="card">
+            <div class="card-body card-block">
+                <div class="card-header">
+                    <h3>Novel / Add book</h3>
+                </div>
+                <form (submit)="addNewBook()" method="post" enctype="multipart/form-data" class="form-horizontal"  [formGroup]="form">
+                    <div class="row form-group">
+                    </div>
+                    <div class="row form-group">
+                        <div class="col col-md-3" >
+                            <label for="text-input" class=" form-control-label">Book Name</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <input type="text" id="text-input" name="text-input" placeholder="Text" class="form-control" formControlName="name">
+                        </div>
+                         
+                    </div>
+                    <div class="row form-group" *ngIf=" form.get('name').invalid &&submited" >
+                        <p style="color: red; margin-left: 27%">
+                            Enter Book Name </p>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="text-input" class=" form-control-label">Author</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <input type="text" id="text-input" name="text-input" placeholder="Text" class="form-control" formControlName="author">
+                        </div>
+                    </div>
+                    <div class="row form-group" *ngIf=" form.get('author').invalid &&submited" >
+                        <p style="color: red; margin-left: 27%">
+                            Enter Author Name </p>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="textarea-input" class=" form-control-label">Description</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <textarea name="textarea-input" id="textarea-input" rows="9" placeholder="Description..." class="form-control" formControlName="content"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="row form-group" *ngIf=" form.get('content').invalid &&submited" >
+                        <p style="color: red; margin-left: 27%">
+                            Enter Book Content </p>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="text-input" class=" form-control-label">PDF</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <input type="text" id="text-input" name="text-input" placeholder="Text" class="form-control" formControlName="PDF">
+                        </div>
+                    </div>
+                    <div class="row form-group" *ngIf="imagePreview!='' && imagePreview">
+                            
+                                <img style="width: 120px; margin:0px 27%"  [src]="imagePreview" [alt]=form.value.name>
+                            
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="file-input" class=" form-control-label">Image</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <input type="file" id="file-input" name="file-input" class="form-control-file" (change)="onImageSelect($event)">
+                        </div>
+                    </div>
+
+                    <div class="row form-group" *ngIf=" form.get('image').invalid &&submited" >
+                        <p style="color: red; margin-left: 27%">
+                            Select Image </p>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="price-input" class=" form-control-label">Price</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <input type="number" id="price-input" name="numbert" placeholder="Price" class="form-control" formControlName="price">
+                        </div>
+                    </div>
+
+                    <div class="row form-group" *ngIf=" form.get('price').invalid &&submited" >
+                        <p style="color: red; margin-left: 27%">
+                            Enter Book Price </p>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="price-input" class=" form-control-label">Rating</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <input type="number" id="price-input" name="numbert" placeholder="Rating" class="form-control" formControlName="rating">
+                        </div>
+                    </div>
+
+                    <div class="row form-group" *ngIf=" form.get('rating').invalid &&submited" >
+                        <p style="color: red; margin-left: 27%">
+                            Enter Book Rating </p>
+                    </div>
+                  
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label class=" form-control-label">Tags</label>
+                        </div>
+                        <div class="col col-md-9">
+                            <div class="form-check">
+                                <div class="checkbox" *ngFor="let tag of tags">
+                                    <label for="checkbox1" class="form-check-label ">
+                                        <input type="checkbox" id="checkbox1" name="checkbox1" value={{tag.value}} (change)="tagSelect(tag,$event)" class="form-check-input">{{tag.value}}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row form-group" *ngIf=" form.get('tags').invalid &&submited" >
+                        <p style="color: red; margin-left: 27%">
+                            Select a tag </p>
+                    </div>
+                    <div class="card-footer text-center" >
+                        <button type="submit" class="btn btn-primary btn-sm">
+                            <i class="fa fa-plus"></i> Add Book
+                        </button>
+                        
+                    </div>
+                    
+                </form>
+
+            </div>
+          </div>
+          </div>
+          </div>
+          </div>

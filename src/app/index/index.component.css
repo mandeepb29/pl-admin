@@ -1,0 +1,5 @@
+@media(max-width:767px){
+    .overview-wrap a{
+        margin-top: 25px !important;
+    }
+}

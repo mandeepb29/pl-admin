@@ -1,0 +1,78 @@
+<div class="main-content">
+    <div class="section__content section__content--p30">
+        <div class="container-fluid">
+            <h3 class="title-5 m-b-35 overview-wrap">user table</h3>
+            <div class="row m-t-30">
+                <div class="col-md-12">
+                    <!-- DATA TABLE-->
+                    <div class="table-responsive">
+                        <table class="table table-borderless table-data3">
+                            <thead>
+                                <tr>
+                                  <th>sr.</th>
+                                    <th>name</th>
+                                    <th>gender</th>
+                                    <th>username</th>
+                                    <th>email</th>
+                                    <th>Verified</th>
+                                    <th>last login</th>
+                                    <th>actions</th>
+                                </tr>
+                            </thead>
+                           <tbody>
+                            <tr *ngFor="let user of userslist">
+                                <td *ngIf="getcount()">{{count-1}}</td>
+                                  <td>{{user.name}} </td>
+                                  <td>{{user.gender}}</td>
+                                  <td>{{user.username}}</td>
+                                  <td>{{user.email}}</td>
+                                  <td>{{user.verified}}</td>
+                                  <td>{{user.lastlogin}}</td>
+                                  <td>
+                                      <div class="table-data-feature">
+                                        <button (click)="getid(user._id)" class="item" data-toggle="tooltip" data-placement="top" title="Delete"  data-toggle="modal" data-target="#deleteModal">
+                                            <i class="zmdi zmdi-delete"></i>
+                                        </button>
+                                      </div>
+                                  </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                    </div>
+                    <!-- END DATA TABLE-->
+                </div>
+            </div>
+</div>
+</div>
+</div>
+
+    <!--Confirm Delete Modal -->
+    <div id="deleteModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+      
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Delete User</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+             
+            </div>
+            <div class="modal-body">
+                <div >
+                   
+                    <div class="card-body card-block">
+                    Delete User from Database
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="modal-footer">
+    
+            <button (click)="deleteuser()" type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Yes</button>
+              <button type="button" class="btn btn-secondary btn-sm"  data-dismiss="modal"> NO </button>
+            </div>
+          </div>
+      
+        </div>
+      </div>
+  
